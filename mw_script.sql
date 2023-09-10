@@ -30,7 +30,8 @@ create table if not exists Track_list(
 id serial primary key,
 track_album integer not null references Album_artists(id),
 track_name varchar(60),
-track_duration integer CHECK(track_duration<900));
+track_duration integer CHECK(track_duration<900),
+UNIQUE (track_album, track_name));
 
 create table if not exists Collection(
 id serial primary key,

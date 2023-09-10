@@ -26,6 +26,13 @@ values ('White Pony', 2000),
 ('Diamond Eyes', 2010),
 ('Deftones', 2003);
 
+
+insert into album (album_name, year_of_release)
+values ('New Songs', 2020);
+
+insert into album_artists (album_id, artist_id)
+values (11,1);
+
 insert into album_artists (album_id, artist_id)
 values(1,1),
 (2,2),
@@ -111,6 +118,19 @@ values(1, 'Passenger', 369),
 (10, 'Moana', 302),
 (10,'Bloody Cape', 218);
 
+insert into track_list (track_album, track_name, track_duration)
+values (8, 'My own', 200),
+(1, 'Own my', 190),
+(2, 'My', 300),
+(3, 'Oh my god', 220), 
+(4, 'Myself', 180),
+(5, 'By myself', 230),
+(6, 'Bemy self', 298),
+(7,'Myself by', 200),
+(8, 'By myself by', 220),
+(9, 'Beemy',200),
+(1, 'Premyne', 212);
+
 --999 - идентификатор для альбома, которого не существует--
 
 insert into collection(collection_name, release_year)
@@ -160,8 +180,14 @@ values ('The White Stripes');
 insert into genre_of_artist (genre_id, artist_id)
 values (3,5);
 
+
+insert into genre_of_artist (genre_id, artist_id)
+values(4,5);
+
+
 insert into album(album_name, year_of_release)
 values('The White Stripes Greatest Hits', 2020);
+
 
 insert into album_artists (album_id, artist_id)
 values (11,5);

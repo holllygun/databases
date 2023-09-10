@@ -23,9 +23,12 @@ where (length(artist_name) - length(replace(artist_name, ' ', '')))=0;
 
 
 --2.5
-select track_name from track_list 
-where upper(track_name) like upper('% my %') or upper(track_name) like upper('% мой %');
+--select track_name from track_list 
+--where upper(track_name) like upper('% my %') or upper(track_name) like upper('% мой %');
 
+--2.5 edited
+select track_name from track_list 
+where string_to_array(lower(track_name), ' ') && array ['my', 'мой'];
 
 
 --3.1
@@ -50,11 +53,18 @@ group by a.album_name ;
 
 
 --3.4
-select distinct(a.artist_name) from artist a
-join album_artists aa on aa.artist_id = a.id 
-join album al on al.id = aa.album_id
-where al.year_of_release != 2020;
+--select distinct(a.artist_name) from artist a
+--join album_artists aa on aa.artist_id = a.id 
+--join album al on al.id = aa.album_id
+--where al.year_of_release != 2020;
 
+--3.4 edited
+select artist_name from artist 
+where artist_name not in(
+    select distinct(a.artist_name) from artist a
+    join album_artists aa on aa.artist_id = a.id 
+    join album al on al.id = aa.album_id
+    where al.year_of_release = 2020);
 
 
 --3.5
@@ -67,14 +77,13 @@ where artist.artist_name = 'Deftones';
 
 
 --task4
---4.1
-select a.album_name, count(goa.artist_id) from album a 
-join album_artists aa on aa.album_id =a.id 
+--4.1 edited
+select distinct a.album_name  from album a
+join album_artists aa  on aa.album_id = a.id 
 join artist ar on ar.id = aa.artist_id 
 join genre_of_artist goa on goa.artist_id = ar.id 
-group by a.album_name
-having count(goa.artist_id) > 1; 
-
+group by a.album_name, ar.id 
+having count(goa.artist_id)>1;
 
 
 --4.2
